@@ -1,0 +1,7 @@
+{
+  "name": "inktreasure",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular-standalone"
+}
