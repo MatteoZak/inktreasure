@@ -1,0 +1,30 @@
+<ion-content class="page-content">
+  <ion-searchbar class="custom" [debounce]="1000" (ionInput)="handleInput($event)"></ion-searchbar>
+  <ion-card *ngFor="let item of books" class="book-card">
+    <ion-card-header>
+      <ion-row class="header-row">
+        <ion-col size="auto" class="cover-col">
+          <ion-img *ngIf="item.imageLinks" [src]="item.imageLinks.smallThumbnail" alt="Book Cover"></ion-img>
+        </ion-col>
+        <ion-col size="10" class="info-col">
+          <ion-card-title>{{ item.title }}</ion-card-title>
+          <ion-card-subtitle *ngIf="item.authors">Autori: {{ item.authors }}</ion-card-subtitle>
+          <ion-card-subtitle *ngIf="item.publisher">Pubblicato da: {{ item.publisher }}</ion-card-subtitle>
+          <ion-card-subtitle *ngIf="item.pageCount">Pagine: {{ item.pageCount }}</ion-card-subtitle>
+          <ion-card-subtitle *ngIf="item.publishedDate">Pubblicato il {{ item.publishedDate | date : 'dd/MM/yyyy'}}</ion-card-subtitle>
+          <ion-chip *ngIf="item.categories">{{item.categories}}</ion-chip>
+        </ion-col>
+      </ion-row>
+    </ion-card-header>
+    <ion-card-content >
+      <ion-accordion-group *ngIf="item.description">
+        <ion-accordion>
+          <ion-item slot="header" color="light">
+            <ion-label>Descrizione</ion-label>
+          </ion-item>
+          <div class="ion-padding" slot="content">{{ item.description }}</div>
+        </ion-accordion>
+      </ion-accordion-group>
+    </ion-card-content>
+  </ion-card>
+</ion-content>

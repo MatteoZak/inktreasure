@@ -1,0 +1,12 @@
+version: 0.2
+phases:
+  pre-build:
+    commands:
+      - echo ${DOCKERHUB_TOKEN} | docker login --u ${DOCKERHUB_USER} --password-stdin
+  build:
+    commands:
+      - docker build -t /myapp:latest .
+  post_build:
+    commands:
+      - docker tag myapp:latest ${DOCKERHUB_USER}/myapp:latest
+      - docker push ${DOCKERHUB_USER}/myapp:latest
